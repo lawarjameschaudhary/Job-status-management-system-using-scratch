@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add/Edit Job</title>
+  <style>
+    :root {
+      --bg: linear-gradient(to right, #dbeafe, #f0fdf4);
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --border: rgba(255, 255, 255, 0.3);
+      --text: #1e293b;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --radius: 16px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background-color: var(--card-bg);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      padding: 48px;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    h2 {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 12px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      margin-top: 20px;
+      color: var(--muted);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 4px;
+      background-color: white;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    button {
+      margin-top: 28px;
+      width: 100%;
+      padding: 14px;
+      background-color: var(--primary);
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    a {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.25s ease;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="formTitle">Add Job</h2>
+    <form id="jobInputForm">
+      <label>Description:</label>
+      <input type="text" id="description" required />
+      <label>Start Date:</label>
+      <input type="date" id="startDate" required />
+      <label>End Date:</label>
+      <input type="date" id="endDate" required />
+      <label>Status:</label>
+      <select id="status">
+        <option value="Completed">Completed</option>
+        <option value="Rejected">Rejected</option>
+        <option value="On Going">On Going</option>
+        <option value="In Review">In Review</option>
+        <option value="Pending">Pending</option>
+      </select>
+      <button type="submit">Save</button>
+    </form>
+    <a href="index.html">← Back to Jobs</a>
+  </div>
+
+  <script>
+    const form = document.getElementById('jobInputForm');
+    const urlParams = new URLSearchParams(window.location.search);
+    const index = urlParams.get('index');
+    let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+
+    if (index !== null) {
+      document.getElementById('formTitle').textContent = 'Edit Job';
+      const job = jobs[index];
+      document.getElementById('description').value = job.description;
+      document.getElementById('startDate').value = job.startDate;
+      document.getElementById('endDate').value = job.endDate;
+      document.getElementById('status').value = job.status;
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const job = {
+        description: document.getElementById('description').value,
+        startDate: document.getElementById('startDate').value,
+        endDate: document.getElementById('endDate').value,
+        status: document.getElementById('status').value
+      };
+
+      if (index !== null) {
+        jobs[index] = job;
+      } else {
+        jobs.push(job);
+      }
+
+      localStorage.setItem('jobs', JSON.stringify(jobs));
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

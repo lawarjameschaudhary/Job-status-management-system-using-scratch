@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 50px;
+  color: #333;
+}
+
+.container {
+  margin: auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+th, td {
+  text-align: left;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr:hover {
+  background-color: #f8f8f8;
+}
+
+a {
+  color: #6c5ce7;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-weight: 500;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.edit-btn {
+  background-color: #0984e3;
+  color: white;
+  margin-right: 6px;
+  padding: 10px 40px;
+}
+
+.delete-btn {
+  background-color: #d63031;
+  color: white;
+  padding: 10px 40px;
+}
+
+.container > a > button {
+  background-color: #00b894;
+  color: white;
+  margin-top: 20px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container > a > button:hover {
+  background-color: rgb(28, 201, 28);
+}
+
+.Completed {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.Rejected {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.OnGoing {
+  color: #f39c12;
+  font-weight: bold;
+}
+
+.InReview {
+  color: #8e44ad;
+  font-weight: bold;
+}
+
+.Pending {
+  color: #e67e22;
+  font-weight: bold;
+}
